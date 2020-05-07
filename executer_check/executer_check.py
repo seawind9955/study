@@ -41,6 +41,9 @@ def getInstDetailList(account, token):
     # proc_num = res_json['total']
     return(res_json['rows'])
 
+
+
+
 login_info = login("admin", "123456")
 proc_list = getInstDetailList("admin", login_info["token"])
 num = 0
