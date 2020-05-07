@@ -1,1 +1,0 @@
-python D:\python\fangyitianbao\main.py
