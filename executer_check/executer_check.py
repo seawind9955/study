@@ -34,11 +34,28 @@ def getInstDetailList(account, token):
         'authorization': auth
     }
     response = requests.post(url, params_json, headers=header)
-    #with open('proc_data.txt','w',encoding='utf-8') as f:
+    with open('proc_data.txt','w',encoding='utf-8') as f:
         f.write(response.text)
-    print(response.text)
+    #print(response.text)
+    res_json = json.loads(response.text)
+    # proc_num = res_json['total']
+    return(res_json['rows'])
 
 login_info = login("admin", "123456")
-getInstDetailList("admin", login_info["token"])
+proc_list = getInstDetailList("admin", login_info["token"])
+num = 0
+for proc_info in proc_list:
+    #print(proc_info)
+    if("excutorName" not in proc_info):
+        print(proc_info)
+        num = num + 1
+    elif(proc_info["excutorName"] == ''):
+        print(proc_info)
+        num = num + 1
+    else:
+        pass
+
+print(num)
+        #print('流程名：' + proc_info['procDefName'] + ' id:' + proc_info['id'])
 
    # print(login("admin", "123456")["token"])
